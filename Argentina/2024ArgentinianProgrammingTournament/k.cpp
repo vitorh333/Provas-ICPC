@@ -85,8 +85,8 @@ void solve() {
     }
     //
     int t = 0, ah = 0, p = 0;
-    rep0(i, n) {
-        rep0(j, m) {
+	for(int j = m-1; j >= 0; j--) {
+        for(int i = n-1; i >= 0; i--) {
             if(a[i][j]) {
                 if(ist(a, i, j)) {
                     t++;
@@ -106,6 +106,19 @@ void solve() {
         }
     }
     cout << t << " " << ah << " " << p << endl;
+	int c = 0;
+
+	for(int i = 0; i < n; i++) {
+		for(int j = 0; j < m; j++) {
+			if(a[i][j] == 1) {
+				c++;
+			}
+		}
+	}
+
+	if(c > 0) {
+		cout << "errado" << endl;
+	}
 }
 
 int main() {
@@ -118,3 +131,4 @@ int main() {
 
     return 0;
 }
+
