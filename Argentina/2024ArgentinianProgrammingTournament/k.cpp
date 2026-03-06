@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
- 
+
 #define ll long long
 #define ull unsigned long long
 #define pii pair<int, int>
@@ -9,32 +9,32 @@ using namespace std;
 #define vll vector<ll>
 #define vpii vector<pii>
 #define vpll vector<pll>
- 
+
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((int)(x).size())
 #define pb push_back
 #define mp make_pair
 #define fi first
 #define se second
- 
+
 #define rep(i, a, b) for (int i = (a); i < (b); i++)
 #define rep0(i, a) rep(i, 0, a)
 #define rep1(i, a) rep(i, 1, a + 1)
 #define repr(i, a, b) for (int i = (b) - 1; i >= (a); i--)
- 
+
 #define endl '\n'
 #define fastio ios_base::sync_with_stdio(false), cin.tie(nullptr)
- 
+
 set<pii> ind;
 int n, m;
- 
+
 bool isvalid(vector<vector<bool>> &a, int i, int j) {
     if(i >= 0 && i < n && j >= 0 && j < m && a[i][j]) {
         return true;
     }
     return false;
 }
- 
+
 bool isp(vector<vector<bool>> &a, int i, int j) {
     if(isvalid(a, i, j + 1) && isvalid(a, i, j + 2) && isvalid(a, i + 1, j) && isvalid(a, i + 2, j) && isvalid(a, i + 3, j) && isvalid(a, i + 4, j) && isvalid(a, i + 1, j + 2) && isvalid(a, i + 2, j + 2) && isvalid(a, i + 2, j + 1)) {
         a[i][j] = false;
@@ -52,7 +52,7 @@ bool isp(vector<vector<bool>> &a, int i, int j) {
     }
     return false;
 }
- 
+
 bool ist(vector<vector<bool>> &a, int i, int j) {
     if(isvalid(a, i, j + 1) && isvalid(a, i, j + 2) && isvalid(a, i + 1, j + 1) && isvalid(a, i + 2, j + 1) && isvalid(a, i + 3, j + 1) && isvalid(a, i + 4, j + 1)) {
         a[i][j] = false;
@@ -71,7 +71,7 @@ bool ist(vector<vector<bool>> &a, int i, int j) {
     //.#.
     return false;
 }
- 
+
 void solve() {
 	cin >> n >> m;
     vector<vector<bool>> a(n, vector<bool>(m, false));
@@ -85,8 +85,8 @@ void solve() {
     }
     //
     int t = 0, ah = 0, p = 0;
-    rep0(i, n) {
-        rep0(j, m) {
+	for(int j = m-1; j >= 0; j--) {
+        for(int i = n-1; i >= 0; i--) {
             if(a[i][j]) {
                 if(ist(a, i, j)) {
                     t++;
@@ -106,8 +106,21 @@ void solve() {
         }
     }
     cout << t << " " << ah << " " << p << endl;
+	int c = 0;
+
+	for(int i = 0; i < n; i++) {
+		for(int j = 0; j < m; j++) {
+			if(a[i][j] == 1) {
+				c++;
+			}
+		}
+	}
+
+	if(c > 0) {
+		cout << "errado" << endl;
+	}
 }
- 
+
 int main() {
     fastio;
     int t = 1;
@@ -115,7 +128,7 @@ int main() {
     while(t--) {
 	    solve();
     }
- 
+
     return 0;
 }
- 
+
